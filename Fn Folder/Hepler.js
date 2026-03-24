@@ -64,12 +64,12 @@ export function btn_add() {
 
         if (flag1 && flag2) {
             add.textContent = 'ADD FILE';
-            Save_songs_user(DBSONGS,name,audio,url,true);
+            Save_songs_user(DBSONGS, name, audio, url, true);
             song_name_add.value = '';
             file.value = '';
             img_song_add.value = '';
-            add_none.style.display ='none'
-            
+            add_none.style.display = 'none'
+
         }
 
     })
@@ -117,7 +117,7 @@ export function user_restore_song() {
 
         })
 
-        
+
 
 
 
@@ -230,7 +230,7 @@ export function Input_Sync(Main_Player, Timeline) {
     })
 };
 
-export function Save_songs_user(DB, song_name, audio, img,flag) {
+export function Save_songs_user(DB, song_name, audio, img, flag) {
     song_name = song_name.toLowerCase();
 
     if (!DB) {
@@ -247,10 +247,10 @@ export function Save_songs_user(DB, song_name, audio, img,flag) {
     });
 
     req.onsuccess = event => {
-        if(flag){
+        if (flag) {
             const Song_track_div = document.querySelector('.track-Songs');
 
-            GetAll_song(DBSONGS,Song_track_div);
+            GetAll_song(DBSONGS, Song_track_div);
         };
     }
 }
@@ -299,6 +299,8 @@ export async function Add_Songs_Defult(DB) {
 
 export function GetAll_song(DB, Div) {
     if (!DB) return;
+    const Song_track_div = document.querySelector('.track-Songs');
+    Skeleton_track_song(Song_track_div)
 
     const tx = DB.transaction('songs', 'readonly');
     const store = tx.objectStore('songs');
@@ -329,6 +331,8 @@ export function GetAll_song(DB, Div) {
             div.append(p);
             frag.append(div);
         }
+        const Song_track_div = document.querySelector('.track-Songs');
+        Skeleton_track_song(Song_track_div)
         Div.innerHTML = '';
         Div.append(frag)
         const songsBox = document.querySelectorAll(".song-box");
@@ -533,13 +537,13 @@ export function Open_dle_panel() {
 
 
 export function Open_add_panel() {
-    
+
     const div = document.querySelector("#Add-song")
     div.addEventListener('click', () => {
         console.log("hello")
         if (add_none.style.display === 'block') {
-            add_none.style.display = 'none';  
-             add.textContent = 'ADD FILE';
+            add_none.style.display = 'none';
+            add.textContent = 'ADD FILE';
             song_name_add.value = '';
             file.value = '';
             img_song_add.value = '';
@@ -552,13 +556,13 @@ export function Open_add_panel() {
 
 
 export function Open_crete_panel() {
-    
+
     const div = document.querySelector(".add-song")
     div.addEventListener('click', () => {
         console.log("hello")
         if (add_none.style.display === 'block') {
-            add_none.style.display = 'none';  
-             add.textContent = 'ADD FILE';
+            add_none.style.display = 'none';
+            add.textContent = 'ADD FILE';
             song_name_add.value = '';
             file.value = '';
             img_song_add.value = '';
