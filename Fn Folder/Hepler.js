@@ -336,7 +336,11 @@ export function GetAll_song(DB, Div) {
             const Song_track_div = document.querySelector('.track-Songs');
             Skeleton_track_song(Song_track_div)
         }
-        Div.append(frag)
+        setTimeout(()=>{
+            Div.innerHTML = '';
+            Div.append(frag)
+        })
+        // Div.append(frag)
         const songsBox = document.querySelectorAll(".song-box");
         Delete_box_render()
         Track_hoves(songsBox);
