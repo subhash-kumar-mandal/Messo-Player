@@ -299,8 +299,7 @@ export async function Add_Songs_Defult(DB) {
 
 export function GetAll_song(DB, Div) {
     if (!DB) return;
-    const Song_track_div = document.querySelector('.track-Songs');
-    Skeleton_track_song(Song_track_div)
+
 
     const tx = DB.transaction('songs', 'readonly');
     const store = tx.objectStore('songs');
@@ -331,9 +330,12 @@ export function GetAll_song(DB, Div) {
             div.append(p);
             frag.append(div);
         }
-        const Song_track_div = document.querySelector('.track-Songs');
-        Skeleton_track_song(Song_track_div)
+
         Div.innerHTML = '';
+        if (Div.innerHTML === '') {
+            const Song_track_div = document.querySelector('.track-Songs');
+            Skeleton_track_song(Song_track_div)
+        }
         Div.append(frag)
         const songsBox = document.querySelectorAll(".song-box");
         Delete_box_render()
